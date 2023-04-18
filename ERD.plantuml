@@ -1,0 +1,49 @@
+@startuml TodoList
+
+
+entity User {
+    *user_id: number
+    *email: string
+    --
+    *password: string
+    username: string
+}
+
+entity Role {
+    *role: string
+    --
+    user_id: number
+    email: string
+}
+
+entity User_project{
+    *project_id:number
+    *user_id: number
+    --
+    role: string
+}
+
+entity Project {
+    *project_id: number
+    *project_name: string
+    --
+    project_description: string
+}
+
+entity Task {
+    *task_title: string
+    *task_id: number
+    --
+    task_description: string
+    status: boolean
+    expriseIn: number
+    project_id: number
+}
+
+User ||--|{ Role: has
+Role ||--|| User_project
+User_project ||--|{ Project
+Project ||--|{ Task: has
+
+
+@enduml
